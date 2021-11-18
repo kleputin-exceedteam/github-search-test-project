@@ -10,6 +10,7 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { RepositoryItemComponent } from './repository-item/repository-item.component';
 import { MatIconModule } from "@angular/material/icon";
 import { MatChipsModule } from "@angular/material/chips";
+import { MatButtonToggleModule } from "@angular/material/button-toggle";
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import { MatChipsModule } from "@angular/material/chips";
     MatPaginatorModule,
     MatProgressBarModule,
     MatIconModule,
-    MatChipsModule
+    MatChipsModule,
+    MatButtonToggleModule
   ],
   exports: [
     MainContentComponent

@@ -3,6 +3,14 @@
     <mat-label>Search</mat-label>
     <input type="text" (keyup)="onSearchQueryChange($event)" matInput placeholder="Ex. Angular" value="Angular">
   </mat-form-field>
+
+  <div class="filter-group">
+    <mat-button-toggle-group name="filters" aria-label="filters" multiple (change)="onFilterChange($event)">
+      <mat-button-toggle value="TypeScript">TypeScript</mat-button-toggle>
+      <mat-button-toggle value="JavaScript">JavaScript</mat-button-toggle>
+      <mat-button-toggle value="C#">C#</mat-button-toggle>
+    </mat-button-toggle-group>
+  </div>
 </div>
 <mat-progress-bar *ngIf="isLoading$ | async" mode="indeterminate"></mat-progress-bar>
 

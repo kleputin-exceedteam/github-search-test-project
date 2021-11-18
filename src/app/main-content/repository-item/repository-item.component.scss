@@ -2,6 +2,10 @@
   height: 100%;
 }
 
+.details-group {
+  margin-left: 5px;
+}
+
 .item-container {
   display: flex;
   border-bottom: 1px solid #a19999;
@@ -11,4 +15,24 @@
 .name {
   font-size: 20px;
   color: #3939e7;
+}
+
+.more-info {
+  margin-top: 0.5rem;
+  align-items: center;
+  display: flex;
+}
+
+.more-info-item {
+  display: flex;
+
+  &:not(:first-child) {
+    margin-left: 0.5rem;
+  }
+
+  & > .text {
+    margin-left: 3px;
+    display: flex;
+    align-items: center;
+  }
 }

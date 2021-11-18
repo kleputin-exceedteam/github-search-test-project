@@ -16,12 +16,16 @@ export const repositoryReducer = createReducer<IRepositoryState>(
     },
     repositories
   })),
-  on(RepositoryActions.updatePaginator, (state, { currentPageIndex, itemsPerPage }) => ({
+  on(RepositoryActions.paginate, (state, { currentPageIndex, itemsPerPage }) => ({
     ...state,
     paginator: {
       ...state.paginator,
       currentPageIndex,
       itemsPerPage
     },
+  })),
+  on(RepositoryActions.updateLanguageFilter, (state, { allowedLanguages }) => ({
+    ...state,
+      allowedLanguages
   })),
 )

@@ -1,5 +1,5 @@
 <div class="item-container">
-  <mat-icon>class</mat-icon>
+  <mat-icon>source</mat-icon>
   <div class="details-group">
     <div class="name">{{repository?.full_name}}</div>
     <div class="description">{{repository?.description}}</div>
@@ -8,5 +8,19 @@
         {{topic}}
       </mat-chip>
     </mat-chip-list>
+    <div class="more-info">
+      <div class="more-info-item">
+        <mat-icon>call_split</mat-icon>
+        <div class="text">{{repository?.forks_count}}</div>
+      </div>
+      <div class="more-info-item">
+        <mat-icon>remove_red_eye</mat-icon>
+        <div class="text">{{repository?.watchers_count}}</div>
+      </div>
+      <div class="more-info-item">
+        <mat-icon>star_border</mat-icon>
+        <div class="text">{{repository?.stargazers_count}}</div>
+      </div>
+    </div>
   </div>
 </div>

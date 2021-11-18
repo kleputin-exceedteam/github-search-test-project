@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { PageEvent } from '@angular/material/paginator';
-import { loadRepositoriesByQuery, updatePaginator } from '../state/repository/repository.actions';
+import { MatButtonToggleChange } from '@angular/material/button-toggle';
+import { loadRepositoriesByQuery, paginate, updateLanguageFilter } from '../state/repository/repository.actions';
 import { selectLoadingState } from '../state/app/app.selectors';
 import { itemsPerPage, repositories, selectRepositoriesCount } from '../state/repository/repository.selectors';
 
@@ -32,7 +33,11 @@ export class MainContentComponent implements OnInit {
   }
 
   onPageChange(event: PageEvent) {
-    this.store$.dispatch(updatePaginator({ itemsPerPage: event.pageSize, currentPageIndex: event.pageIndex + 1 }));
+    this.store$.dispatch(paginate({ itemsPerPage: event.pageSize, currentPageIndex: event.pageIndex + 1 }));
+  }
+
+  onFilterChange(event: MatButtonToggleChange) {
+    this.store$.dispatch(updateLanguageFilter( { allowedLanguages: event.value }));
   }
 
 }

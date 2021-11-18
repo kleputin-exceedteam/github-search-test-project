@@ -17,7 +17,7 @@ export class RepositoryEffects {
   ) {}
 
   loadRepository$ = createEffect(() => this.actions$.pipe(
-      ofType(RepositoryActions.loadRepositoriesByQuery, RepositoryActions.updatePaginator),
+      ofType(RepositoryActions.loadRepositoriesByQuery, RepositoryActions.paginate, RepositoryActions.updateLanguageFilter),
       withLatestFrom(this.store$.select(selectRepositoryState)),
       debounceTime(1000),
       mergeMap(([_, repositoryState]) => {
@@ -25,7 +25,7 @@ export class RepositoryEffects {
           return EMPTY;
         }
         const paginator = repositoryState.paginator;
-        return this.repositoryApiService.getRepositoriesByQuery(repositoryState.query, paginator.itemsPerPage, paginator.currentPageIndex)
+        return this.repositoryApiService.getRepositoriesByQuery(repositoryState.query, paginator.itemsPerPage, paginator.currentPageIndex, repositoryState.allowedLanguages)
           .pipe(
             map(response => RepositoryActions.loadRepositoriesByQuerySuccess({ repositories: response.items, total_count: response.total_count })),
             catchError(() => EMPTY)

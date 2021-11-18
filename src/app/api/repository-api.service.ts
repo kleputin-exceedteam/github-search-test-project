@@ -17,12 +17,13 @@ export class RepositoryApiService {
 
   constructor(private readonly http: HttpClient) { }
 
-  getRepositoriesByQuery(query: string, itemsPerPage: number, pageIndex: number): Observable<ISearchResponse> {
+  getRepositoriesByQuery(query: string, itemsPerPage: number, pageIndex: number, languageFilterOptions: string[]): Observable<ISearchResponse> {
+    const requestQuery = languageFilterOptions.length > 0 ? query + `language: ${languageFilterOptions.join(', ')}` : query;
     return this.http.get<ISearchResponse>(this.baseSearchUrl, {
       params: {
-        q: query,
+        q: requestQuery,
         per_page: itemsPerPage,
-        page: pageIndex
+        page: pageIndex,
       }
     });
   }
