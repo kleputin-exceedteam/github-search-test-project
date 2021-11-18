@@ -1,0 +1,38 @@
+
+$details-header-height: 10rem;
+
+.details-header {
+  display: flex;
+  margin: 0 2rem;
+  justify-content: space-between;
+  height: $details-header-height;
+}
+
+.branches-list {
+  padding: 1rem;
+  width: 30%;
+  overflow-y: auto;
+}
+
+.readme-container {
+  overflow-y: auto;
+  height: calc(100% - #{$details-header-height} - 10rem);
+  margin: 2rem;
+  padding: 1rem;
+  border: 1px solid #d2d0d0;
+}
+
+.label {
+  font-size: 20px;
+  color: #3939e7;
+}
+
+.info-table {
+  padding: 1rem;
+  border: 1px solid #d2d0d0;
+
+  .label {
+    font-size: 14px;
+    padding-right: 1rem;
+  }
+}

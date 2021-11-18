@@ -28,4 +28,12 @@ export const repositoryReducer = createReducer<IRepositoryState>(
     ...state,
       allowedLanguages
   })),
+  on(RepositoryActions.setSelectedRepository, (state, { name }) => ({
+    ...state,
+      selectedRepository: name
+  })),
+  on(RepositoryActions.loadRepositoryDetailsSuccess, (state, { repository }) => ({
+    ...state,
+    selectedRepositoryDetails: repository
+  }))
 )

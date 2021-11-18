@@ -23,3 +23,18 @@ export const repositories = createSelector(
     return repositoryState.repositories
   }
 )
+
+export const selectedRepository = createSelector(
+  selectRepositoryState,
+  (repositoryState) => {
+    return repositoryState.selectedRepository
+  }
+)
+
+export const selectedRepositoryDetails = createSelector(
+  selectRepositoryState,
+  (repositoryState) => {
+    return repositoryState.selectedRepositoryDetails
+
+  }
+)

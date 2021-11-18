@@ -1,0 +1,41 @@
+<div class="details-header">
+  <table class="info-table">
+    <tr>
+      <td class="label">Full name:</td>
+      <td>{{selectedRepositoryDetails?.full_name}}</td>
+    </tr>
+    <tr>
+      <td class="label">Open issues:</td>
+      <td>{{selectedRepositoryDetails?.open_issues_count}}</td>
+    </tr>
+    <tr>
+      <td class="label">Forks:</td>
+      <td>{{selectedRepositoryDetails?.forks_count}}</td>
+    </tr>
+    <tr>
+      <td class="label">Subscribers:</td>
+      <td>{{selectedRepositoryDetails?.subscribers_count}}</td>
+    </tr>
+    <tr>
+      <td class="label">Default branch:</td>
+      <td>{{selectedRepositoryDetails?.default_branch}}</td>
+    </tr>
+  </table>
+
+  <div class="branches-list">
+    <div class="label">Branches</div>
+    <mat-list>
+      <mat-list-item *ngFor="let branch of selectedRepositoryDetails?.branches">{{branch}}</mat-list-item>
+    </mat-list>
+  </div>
+</div>
+
+<div class="readme-container">
+  <div class="label">README:</div>
+  <markdown
+    [src]="selectedRepositoryDetails?.readme_url"
+  >
+    No README for this repository
+  </markdown>
+</div>
+

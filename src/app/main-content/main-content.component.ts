@@ -1,10 +1,18 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { PageEvent } from '@angular/material/paginator';
 import { MatButtonToggleChange } from '@angular/material/button-toggle';
-import { loadRepositoriesByQuery, paginate, updateLanguageFilter } from '../state/repository/repository.actions';
+import {
+  loadRepositoriesByQuery,
+  paginate,
+  setSelectedRepository,
+  updateLanguageFilter
+} from '../state/repository/repository.actions';
 import { selectLoadingState } from '../state/app/app.selectors';
 import { itemsPerPage, repositories, selectRepositoriesCount } from '../state/repository/repository.selectors';
+import { IRepository } from '../state/repository/repository.model';
+import { routerPaths } from '../app-routing.module';
 
 @Component({
   selector: 'app-main-content',
@@ -13,7 +21,7 @@ import { itemsPerPage, repositories, selectRepositoriesCount } from '../state/re
 })
 export class MainContentComponent implements OnInit {
 
-  constructor(private readonly store$: Store) { }
+  constructor(private readonly store$: Store, private readonly router: Router) { }
 
   isLoading$ = this.store$.select(selectLoadingState);
   repositoriesCount$ = this.store$.select(selectRepositoriesCount);
@@ -40,4 +48,8 @@ export class MainContentComponent implements OnInit {
     this.store$.dispatch(updateLanguageFilter( { allowedLanguages: event.value }));
   }
 
+  onSelectRepository(repository: IRepository) {
+    this.store$.dispatch(setSelectedRepository({name: repository.full_name}));
+    this.router.navigate([routerPaths.repository]);
+  }
 }
