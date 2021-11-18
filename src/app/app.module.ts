@@ -13,10 +13,10 @@ import { StateModule } from './state/state.module';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
     BrowserAnimationsModule,
+    AppRoutingModule,
+    StateModule,
     MainContentModule,
-    StateModule
   ],
   providers: [],
   bootstrap: [AppComponent]

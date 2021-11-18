@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { loadRepositoriesByQuery } from "../state/repository/repository.actions";
 
 @Component({
   selector: 'app-main-content',
@@ -7,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MainContentComponent implements OnInit {
 
-  constructor() { }
+  constructor(private readonly store$: Store) { }
 
   ngOnInit(): void {
   }
@@ -17,7 +19,7 @@ export class MainContentComponent implements OnInit {
     if (value.trim().length === 0) {
       return;
     }
-    console.log(value);
+    this.store$.dispatch(loadRepositoriesByQuery({ query: value }));
   }
 
 }
