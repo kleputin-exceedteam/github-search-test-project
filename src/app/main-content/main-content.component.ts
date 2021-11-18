@@ -12,4 +12,12 @@ export class MainContentComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  onSearchQueryChange(event: Event) {
+    const value = (event.target as HTMLInputElement).value;
+    if (value.trim().length === 0) {
+      return;
+    }
+    console.log(value);
+  }
+
 }
