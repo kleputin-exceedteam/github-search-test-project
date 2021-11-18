@@ -7,11 +7,15 @@ import { RepositoryApiService } from '../api/repository-api.service';
 import { HttpClientModule } from '@angular/common/http';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { RepositoryItemComponent } from './repository-item/repository-item.component';
+import { MatIconModule } from "@angular/material/icon";
+import { MatChipsModule } from "@angular/material/chips";
 
 
 @NgModule({
   declarations: [
-    MainContentComponent
+    MainContentComponent,
+    RepositoryItemComponent
   ],
   imports: [
     BrowserModule,
@@ -19,7 +23,9 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
     MatInputModule,
     HttpClientModule,
     MatPaginatorModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    MatIconModule,
+    MatChipsModule
   ],
   exports: [
     MainContentComponent

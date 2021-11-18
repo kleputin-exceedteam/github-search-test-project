@@ -16,3 +16,10 @@ export const itemsPerPage = createSelector(
     return repositoryState.paginator.itemsPerPage;
   }
 );
+
+export const repositories = createSelector(
+  selectRepositoryState,
+  (repositoryState) => {
+    return repositoryState.repositories
+  }
+)

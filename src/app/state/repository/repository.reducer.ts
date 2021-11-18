@@ -8,11 +8,11 @@ export const repositoryReducer = createReducer<IRepositoryState>(
     ...state,
       query
   })),
-  on(RepositoryActions.loadRepositoriesByQuerySuccess, (state, { repositories }) => ({
+  on(RepositoryActions.loadRepositoriesByQuerySuccess, (state, { repositories, total_count }) => ({
     ...state,
     paginator: {
       ...state.paginator,
-      count: repositories.total_count
+      count: total_count
     },
     repositories
   })),

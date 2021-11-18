@@ -1,0 +1,12 @@
+<div class="item-container">
+  <mat-icon>class</mat-icon>
+  <div class="details-group">
+    <div class="name">{{repository?.full_name}}</div>
+    <div class="description">{{repository?.description}}</div>
+    <mat-chip-list >
+      <mat-chip *ngFor="let topic of repository?.topics">
+        {{topic}}
+      </mat-chip>
+    </mat-chip-list>
+  </div>
+</div>

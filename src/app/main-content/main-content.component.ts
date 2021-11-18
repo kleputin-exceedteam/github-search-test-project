@@ -3,7 +3,7 @@ import { Store } from '@ngrx/store';
 import { PageEvent } from '@angular/material/paginator';
 import { loadRepositoriesByQuery, updatePaginator } from '../state/repository/repository.actions';
 import { selectLoadingState } from '../state/app/app.selectors';
-import { itemsPerPage, selectRepositoriesCount } from '../state/repository/repository.selectors';
+import { itemsPerPage, repositories, selectRepositoriesCount } from '../state/repository/repository.selectors';
 
 @Component({
   selector: 'app-main-content',
@@ -17,8 +17,10 @@ export class MainContentComponent implements OnInit {
   isLoading$ = this.store$.select(selectLoadingState);
   repositoriesCount$ = this.store$.select(selectRepositoriesCount);
   itemsPerPage$ = this.store$.select(itemsPerPage);
+  repositories$ = this.store$.select(repositories);
 
   ngOnInit(): void {
+    this.store$.dispatch(loadRepositoriesByQuery({ query: 'Angular' }));
   }
 
   onSearchQueryChange(event: Event) {
@@ -30,7 +32,7 @@ export class MainContentComponent implements OnInit {
   }
 
   onPageChange(event: PageEvent) {
-    this.store$.dispatch(updatePaginator({ itemsPerPage: event.pageSize, currentPageIndex: event.pageIndex }));
+    this.store$.dispatch(updatePaginator({ itemsPerPage: event.pageSize, currentPageIndex: event.pageIndex + 1 }));
   }
 
 }

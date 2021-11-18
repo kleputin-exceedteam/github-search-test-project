@@ -1,5 +1,11 @@
 export const repositoryStateKey = 'repository';
 
+export interface IRepository {
+  full_name: string;
+  description: string;
+  topics: string[];
+}
+
 export interface IRepositoryState {
   selectedRepository?: any;
   repositories: any;

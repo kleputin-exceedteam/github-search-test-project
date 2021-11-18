@@ -27,7 +27,7 @@ export class RepositoryEffects {
         const paginator = repositoryState.paginator;
         return this.repositoryApiService.getRepositoriesByQuery(repositoryState.query, paginator.itemsPerPage, paginator.currentPageIndex)
           .pipe(
-            map(repositories => RepositoryActions.loadRepositoriesByQuerySuccess({repositories})),
+            map(response => RepositoryActions.loadRepositoriesByQuerySuccess({ repositories: response.items, total_count: response.total_count })),
             catchError(() => EMPTY)
           )
       })

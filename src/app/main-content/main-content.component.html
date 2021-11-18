@@ -1,10 +1,18 @@
-<mat-form-field class="example-full-width" appearance="fill">
-  <mat-label>Search</mat-label>
-  <input type="text" (keyup)="onSearchQueryChange($event)" matInput placeholder="Ex. Angular">
-</mat-form-field>
+<div class="header">
+  <mat-form-field class="search" appearance="fill">
+    <mat-label>Search</mat-label>
+    <input type="text" (keyup)="onSearchQueryChange($event)" matInput placeholder="Ex. Angular" value="Angular">
+  </mat-form-field>
+</div>
 <mat-progress-bar *ngIf="isLoading$ | async" mode="indeterminate"></mat-progress-bar>
 
-<mat-paginator [length]="repositoriesCount$ | async"
+
+<div class="repository-list">
+  <app-repository-item *ngFor="let repository of repositories$ | async" [repository]="repository"></app-repository-item>
+</div>
+
+<mat-paginator class="footer"
+               [length]="repositoriesCount$ | async"
                (page)="onPageChange($event)"
                [pageSize]="itemsPerPage$ | async"
                [pageSizeOptions]="[5, 10, 25, 100]"
