@@ -6,6 +6,7 @@ import { MatInputModule } from '@angular/material/input';
 import { RepositoryApiService } from '../api/repository-api.service';
 import { HttpClientModule } from '@angular/common/http';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     BrowserAnimationsModule,
     MatInputModule,
     HttpClientModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatProgressBarModule
   ],
   exports: [
     MainContentComponent

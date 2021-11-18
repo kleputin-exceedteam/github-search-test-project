@@ -2,5 +2,11 @@
   <mat-label>Search</mat-label>
   <input type="text" (keyup)="onSearchQueryChange($event)" matInput placeholder="Ex. Angular">
 </mat-form-field>
+<mat-progress-bar *ngIf="isLoading$ | async" mode="indeterminate"></mat-progress-bar>
 
-<mat-paginator></mat-paginator>
+<mat-paginator [length]="repositoriesCount$ | async"
+               (page)="onPageChange($event)"
+               [pageSize]="itemsPerPage$ | async"
+               [pageSizeOptions]="[5, 10, 25, 100]"
+               aria-label="Select page">
+</mat-paginator>

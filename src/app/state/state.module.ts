@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { IState, reducers } from './state.model';
 import { environment } from '../../environments/environment';
-import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { EffectsModule } from "@ngrx/effects";
-import { RepositoryEffects } from "./repository/repository.effects";
+import { RepositoryEffects } from './repository/repository.effects';
 
 @NgModule({
   imports: [

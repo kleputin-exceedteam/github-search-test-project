@@ -1,25 +1,36 @@
 import { Injectable } from '@angular/core';
-import { EMPTY } from 'rxjs';
-import { map, mergeMap, catchError, tap } from 'rxjs/operators';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
+import { Store } from '@ngrx/store';
+import { EMPTY } from 'rxjs';
+import { map, mergeMap, catchError, debounceTime, withLatestFrom } from 'rxjs/operators';
 import * as RepositoryActions from './repository.actions';
-import { RepositoryApiService } from "../../api/repository-api.service";
+import { RepositoryApiService } from '../../api/repository-api.service';
+import { selectRepositoryState } from './repository.selectors';
 
 @Injectable()
 export class RepositoryEffects {
 
   constructor(
     private actions$: Actions,
-    private repositoryApiService: RepositoryApiService
+    private repositoryApiService: RepositoryApiService,
+    private readonly store$: Store
   ) {}
 
   loadRepository$ = createEffect(() => this.actions$.pipe(
-      ofType(RepositoryActions.loadRepositoriesByQuery),
-      mergeMap((action) => this.repositoryApiService.getRepositoriesByQuery(action.query)
-        .pipe(
-          map(repositories => RepositoryActions.setRepositories({ repositories })),
-          catchError(() => EMPTY)
-        ))
+      ofType(RepositoryActions.loadRepositoriesByQuery, RepositoryActions.updatePaginator),
+      withLatestFrom(this.store$.select(selectRepositoryState)),
+      debounceTime(1000),
+      mergeMap(([_, repositoryState]) => {
+        if (!repositoryState.query) {
+          return EMPTY;
+        }
+        const paginator = repositoryState.paginator;
+        return this.repositoryApiService.getRepositoriesByQuery(repositoryState.query, paginator.itemsPerPage, paginator.currentPageIndex)
+          .pipe(
+            map(repositories => RepositoryActions.loadRepositoriesByQuerySuccess({repositories})),
+            catchError(() => EMPTY)
+          )
+      })
     )
   );
 }

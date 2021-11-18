@@ -1,5 +1,6 @@
 import { createReducer, on } from '@ngrx/store';
 import * as AppActions from './app.actions';
+import * as RepositoryActions from '../repository/repository.actions';
 import { IAppState, initialAppState } from './app.model';
 
 export const appReducer = createReducer<IAppState>(
@@ -8,4 +9,13 @@ export const appReducer = createReducer<IAppState>(
     ...state,
     isLoading
   })),
+  on(RepositoryActions.loadRepositoriesByQuery, (state) => ({
+    ...state,
+    isLoading: true
+  })),
+  on(RepositoryActions.loadRepositoriesByQuerySuccess, (state) => ({
+    ...state,
+    isLoading: false
+  })),
+
 );

@@ -11,10 +11,12 @@ export class RepositoryApiService {
 
   constructor(private readonly http: HttpClient) { }
 
-  getRepositoriesByQuery(query: string): Observable<any> {
+  getRepositoriesByQuery(query: string, itemsPerPage: number, pageIndex: number): Observable<any> {
     return this.http.get(this.baseSearchUrl, {
       params: {
-        q: query
+        q: query,
+        per_page: itemsPerPage,
+        page: pageIndex
       }
     });
   }
