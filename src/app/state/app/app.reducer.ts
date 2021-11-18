@@ -8,8 +8,4 @@ export const appReducer = createReducer<IAppState>(
     ...state,
     isLoading
   })),
-  on(AppActions.setRepositories, (state, { repositories }) => ({
-    ...state,
-    repositories
-  })),
 );
